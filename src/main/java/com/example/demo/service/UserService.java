@@ -6,9 +6,9 @@ import java.util.List;
 import com.example.demo.model.User;
 
 public interface UserService {
-	public String insert(User b);
+	public int insert(User b);
 	public List<User> getall();
 	public User getbyid(int id);
-	public void updateLastLogin(int uid, Date date);
+	public void updateLastLogin(int uid, String date);
 	
 }

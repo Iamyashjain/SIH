@@ -35,7 +35,7 @@ public class PackageController {
 	    }
     
     @PostMapping("/create")
-    public String createPackage(@RequestBody Package p) {
+    public int createPackage(@RequestBody Package p) {
     	return pser.createPackage(p);
     }
 }

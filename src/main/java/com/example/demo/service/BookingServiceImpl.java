@@ -18,9 +18,10 @@ public class BookingServiceImpl implements BookingService {
 	}
 
 	@Override
-	public String createBooking(Booking b) {
-		brepo.save(b);
-		return "success";
+	public int createBooking(Booking b) {
+
+		Booking booo = brepo.save(b);
+		return booo.getBid();
 	}
 
 	@Override

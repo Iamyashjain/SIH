@@ -3,20 +3,27 @@ package com.example.demo.model;
 import java.util.HashSet;
 import java.util.Set;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 
 @Entity
 public class Booking {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int bid;
     @ManyToOne
     @JoinColumn(name = "uid") // This should match the property name in User
     private User user;
-    private String booking_date;
+	private int mid;
+
+	public int getMid() {
+		return mid;
+	}
+
+	public void setMid(int mid) {
+		this.mid = mid;
+	}
+
+	private String booking_date;
     private String booking_time;
     private String visit_date;
     private String visit_time;

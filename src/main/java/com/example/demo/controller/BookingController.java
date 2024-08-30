@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +20,14 @@ import com.example.demo.service.BookingService;
 @CrossOrigin
 @RequestMapping("/booking")
 public class BookingController {
+	@Autowired
+	UserController usercont;
+	@Autowired
+	MuseumController museumcont;
+	@Autowired
+	PaymentController paymentcont;
+
+
 	BookingService bser;
 
 	public BookingController(BookingService bser) {
@@ -28,7 +37,15 @@ public class BookingController {
 	
 	@PostMapping("/create")
 	public String createBooking(@RequestBody Booking b) {
-		return bser.createBooking(b);
+
+		b.setUser(usercont.getCurrentUser());
+		b.setMid(museumcont.mueid);
+		b.setBooking_status("Booking");
+		b.setPayment_status("Initiated");
+		bser.createBooking(b);
+
+
+		return paymentcont.createorderdirectly(b,usercont.getCurrentUser());
 	}
 	
 	@GetMapping("/user/{uid}")

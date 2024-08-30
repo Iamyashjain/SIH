@@ -25,6 +25,7 @@ public class MuseumServiceImpl implements MuseumService {
 	@Override
 	public Museum fullDetails(int mid) {
 		// TODO Auto-generated method stub
+		mrepo.findById(mid).get();
 		Museum m = mrepo.findById(mid).get();
 		return m;
 	}

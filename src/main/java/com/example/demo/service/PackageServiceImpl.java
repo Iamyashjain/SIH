@@ -29,9 +29,9 @@ public class PackageServiceImpl implements PackageService{
 	}
 
 	@Override
-	public String createPackage(Package p) {
-		prepo.save(p);
-		return "success";
+	public int createPackage(Package p) {
+		Package PP= prepo.save(p);
+		return PP.getPid();
 	}
 	
 

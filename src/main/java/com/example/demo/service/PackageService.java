@@ -8,6 +8,6 @@ public interface PackageService {
 	//get packages of meuseum
 	Package viewDetailedPackage(int pid);
 	List<Package> getPackagesByMuseumId(int mid);
-	String createPackage(Package p);
+	int createPackage(Package p);
 	
 }

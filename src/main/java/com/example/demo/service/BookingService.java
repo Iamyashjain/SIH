@@ -5,7 +5,7 @@ import java.util.List;
 import com.example.demo.model.Booking;
 
 public interface BookingService {
-	String createBooking(Booking b);
+	int createBooking(Booking b);
 	List<Booking>getbyid(int uid);
 	List<Booking>getall();
 	String changeStatusBooking(int bid,String ans);

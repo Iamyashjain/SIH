@@ -2,14 +2,12 @@ package com.example.demo.model;
 
 import java.util.List;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 
 @Entity
 public class Package {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int pid;
 	private String pname;
 	private String price;

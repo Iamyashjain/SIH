@@ -4,20 +4,23 @@ package com.example.demo.model;
 
 import java.util.Date;
 
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Entity;
 
 @Entity
 public class User {
     @Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private int uid; // Use private fields
     private String name;
-    private int mobile;
+    private String mobile;
     private String email;
     private String nationality;
     private String dob;
     private String registrationDate;
-    private Date lastLogin;
+    private String lastLogin;
     
     
 	public int getUid() {
@@ -32,10 +35,10 @@ public class User {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getMobile() {
+	public String getMobile() {
 		return mobile;
 	}
-	public void setMobile(int mobile) {
+	public void setMobile(String mobile) {
 		this.mobile = mobile;
 	}
 	public String getEmail() {
@@ -62,10 +65,10 @@ public class User {
 	public void setRegistrationDate(String registrationDate) {
 		this.registrationDate = registrationDate;
 	}
-	public Date getLastLogin() {
+	public String getLastLogin() {
 		return lastLogin;
 	}
-	public void setLastLogin(Date lastLogin) {
+	public void setLastLogin(String lastLogin) {
 		this.lastLogin = lastLogin;
 	}
 	@Override
@@ -74,8 +77,8 @@ public class User {
 				+ nationality + ", dob=" + dob + ", registrationDate=" + registrationDate + ", lastLogin=" + lastLogin
 				+ "]";
 	}
-	public User(int uid, String name, int mobile, String email, String nationality, String dob, String registrationDate,
-			Date lastLogin) {
+	public User(int uid, String name, String mobile, String email, String nationality, String dob, String registrationDate,
+			String lastLogin) {
 		super();
 		this.uid = uid;
 		this.name = name;

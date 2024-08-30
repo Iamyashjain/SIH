@@ -2,16 +2,13 @@ package com.example.demo.model;
 
 import java.util.Set;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name="museum")
 public class Museum {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int mid;
 	private String muname;
 	private String description;

@@ -16,12 +16,11 @@ public class UserServiceImpl implements UserService {
 		this.urepo = urepo;
 	}
 	@Override
-	public String insert(User b) {
+	public int insert(User b) {
 		System.out.println("Saving user: " + b);
-		// TODO Auto-generated method stub
-		urepo.save(b);
-		return "success";
-
+		User savedUser = urepo.save(b);
+		// Return the auto-generated ID
+		return savedUser.getUid();
 	}
 
 
@@ -34,10 +33,10 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User getbyid(int id) {
 
-		return null;
+		return urepo.findById(id).get();
 	}
 	@Override
-	public void updateLastLogin(int uid, Date date) {
+	public void updateLastLogin(int uid, String date) {
 		// TODO Auto-generated method stub
 		User user = urepo.findById(uid).get();
 		if(user!=null) {
