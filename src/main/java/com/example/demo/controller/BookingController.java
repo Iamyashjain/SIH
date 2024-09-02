@@ -1,6 +1,8 @@
 package com.example.demo.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -26,33 +28,48 @@ public class BookingController {
 	MuseumController museumcont;
 	@Autowired
 	PaymentController paymentcont;
+	@Autowired
+	VisitController visitcont;
 
-
+String sesssion_id;
+	int bid;
 	BookingService bser;
 
 	public BookingController(BookingService bser) {
 		super();
 		this.bser = bser;
 	}
-	
+	@GetMapping("/get")
+	public Map sessionID()
+	{
+		Map map=new HashMap();
+		map.put("sessionId",sesssion_id);
+		return map;
+	}
 	@PostMapping("/create")
-	public String createBooking(@RequestBody Booking b) {
+	public Map createBooking(@RequestBody Booking b) {
 
 		b.setUser(usercont.getCurrentUser());
 		b.setMid(museumcont.mueid);
 		b.setBooking_status("Booking");
 		b.setPayment_status("Initiated");
-		bser.createBooking(b);
+		bid=bser.createBooking(b);
 
-
-		return paymentcont.createorderdirectly(b,usercont.getCurrentUser());
+		sesssion_id=paymentcont.createorderdirectly(b,usercont.getCurrentUser());
+		Map map=new HashMap();
+		map.put("sessionId",sesssion_id);
+		return map;
 	}
 	
 	@GetMapping("/user/{uid}")
 	public List<Booking>getbyid(@PathVariable int uid){
 		return bser.getbyid(uid);
 	}
-    @GetMapping("/all")
+	@GetMapping("/booking")
+	public Booking getcurrentbooking(){
+		return bser.getbyidone(bid);
+	}
+	@GetMapping("/all")
     public List<Booking> getAll() {
         return bser.getall();
     }

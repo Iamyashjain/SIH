@@ -1,6 +1,8 @@
 package com.example.demo.controller;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.web.bind.annotation.*;
 
@@ -27,6 +29,14 @@ public class UserController {
 	public int insert(@RequestBody User b1) {
 		uid=userv.insert(b1);
 		return uid;
+	}
+
+	@PostMapping("/saves")
+	public Map insertrandom(@RequestBody User b1) {
+		uid=userv.insert(b1);
+		Map map=new HashMap();
+		map.put("sessionId",uid);
+		return map;
 	}
 	
 	@PostMapping("/updatelast")

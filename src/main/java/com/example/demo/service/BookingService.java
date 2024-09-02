@@ -9,4 +9,5 @@ public interface BookingService {
 	List<Booking>getbyid(int uid);
 	List<Booking>getall();
 	String changeStatusBooking(int bid,String ans);
+	Booking getbyidone(int uid);
 }

@@ -51,4 +51,9 @@ public class BookingServiceImpl implements BookingService {
 		}
 	}
 
+	@Override
+	public Booking getbyidone(int uid) {
+		return brepo.findById(uid).get();
+	}
+
 }

@@ -11,7 +11,10 @@ public class Package {
 	private int pid;
 	private String pname;
 	private String price;
-	private List<String>l;
+	@ElementCollection  // Annotate the List to tell JPA it's a collection of basic types
+	@CollectionTable(name = "package_details", joinColumns = @JoinColumn(name = "package_id"))
+	@Column(name = "detail")
+	private List<String> l;
 	private String validity;
 	private int group_size;
 	private int availablity;
